@@ -1,5 +1,5 @@
-### Docker GUI 
-
+### Docker GUI
+![](src/assets/docker.png)
 ```
 1. Clone from repository
 2. run npm install
