@@ -1,0 +1,42 @@
+<section *ngIf="containers">
+  <div>
+    <div class="card mb-2 bg-dark text-white" *ngFor="let container of containers">
+      <div class="card-body">
+        <h4>{{container.Name}}
+          <small class="docker-btn"
+               [class]="'border-' + statusColors[container.State.Status] + ' text-' + statusColors[container.State.Status]"
+        >
+          {{container.State.Status}}
+        </small>
+        </h4>
+        <p>{{container.Config.Image}}</p>
+      </div>
+      <div class="card-footer d-flex justify-content-end">
+        <button
+          class="btn btn-primary mr-2"
+          (click)="send(container.Id, statusEnum.start)"
+        >
+          Start
+        </button>
+        <button
+          class="btn btn-danger mr-2"
+          (click)="send(container.Id, statusEnum.stop)"
+        >
+          Stop
+        </button>
+        <button
+          class="btn btn-primary mr-2"
+          (click)="send(container.Id, statusEnum.unpause)"
+          [disabled]="!container.State.Paused"
+        >
+          Unpause
+        </button>
+        <button
+          class="btn btn-warning"
+          (click)="send(container.Id, statusEnum.pause)"
+          [disabled]="container.State.Paused"
+        >Pause</button>
+      </div>
+    </div>
+  </div>
+</section>
